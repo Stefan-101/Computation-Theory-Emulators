@@ -64,16 +64,3 @@ def check(c, verbosity = 0):
                 print("The following rule takes a letter which is not in the alphabet:\n" + rule) 
             return 7
     return 0
-
-
-    
-
-
-c = c_parser.load_file("dfa1.config")
-print(c_parser.get_section_list(c))
-print(c_parser.get_section_content(c, "Sigma"))
-
-print(check(c))
-
-
-

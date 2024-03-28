@@ -1,6 +1,6 @@
 # The following emulator takes in a DFA (can be created with c_parser) and consumes letters/strings
-# while modifying the state of the emulator
-# Letters are separted by single spaces
+# while modifying the state of the emulator.
+# Letters are separted by single spaces.
 
 from dfa_checker import check
 import re

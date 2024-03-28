@@ -12,6 +12,9 @@ class Emulator:
         self.dfa = dfa
         self.current_state = dfa["start"][0]
 
+    def get_current_state(self):
+        return self.current_state
+
     def consume_string(self, str):
         str = str.split()
         for letter in str:

@@ -14,7 +14,7 @@ class Emulator:
         self.alphabet = nfa["sigma"]
         self.current_states = [nfa["start"][0]]
         self.final_states = nfa["final"]
-        self.read_first_letter = False
+        self.read_first_letter = False  # if the first letter has been read
         self.rules = {}
         for rule in nfa["delta"]:
             rule = re.split("[ ,]+", rule)

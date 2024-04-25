@@ -44,12 +44,13 @@ def check(c, verbosity = 0):
                 print("The following rule contains a var which is not in the vars list:\n" + rule)
             return 4
         
-        # check if rule output is formed of correct variables and terminals
-        output = rule[1].split()
-        for component in output:
-            if component not in c_parser.get_section_content(c,"vars") and component not in c_parser.get_section_content(c,"sigma"):
-                if verbosity:
-                    print("The following rule contains a component which is not in the vars or sigma list:\n" + ' -> '.join(rule))
-                return 5
+        for rule in re.split("\s*\|\s*", rule[1]):
+            # check if rule output is formed of correct variables and terminals
+            output = rule.split()
+            for component in output:
+                if component not in c_parser.get_section_content(c,"vars") and component not in c_parser.get_section_content(c,"sigma"):
+                    if verbosity:
+                        print("The following rule contains a component which is not in the vars or sigma list:\n" + ' -> '.join(rule))
+                    return 5
 
     return 0

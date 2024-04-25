@@ -16,9 +16,9 @@ class Emulator:
         for rule in cfg["rules"]:
             rule = re.split("\s*->\s*", rule)
             if rule[0] in self.rules:
-                self.rules[rule[0]].append(rule[1])
+                self.rules[rule[0]].extend(re.split("\s*\|\s*", rule[1]))
             else:
-                self.rules[rule[0]] = [rule[1]]
+                self.rules[rule[0]] = re.split("\s*\|\s*", rule[1])
 
     def get_current_string(self):
         return self.current_string

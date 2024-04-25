@@ -28,6 +28,8 @@ class Emulator:
         
         if (self.current_state, letter) in self.rules:
             self.current_state = self.rules[(self.current_state, letter)]
+        else:
+            self.current_state = "NO_STATE"
 
     def consume_string(self, str):
         str = str.split()
@@ -37,6 +39,8 @@ class Emulator:
             
             if (self.current_state, letter) in self.rules:
                 self.current_state = self.rules[(self.current_state, letter)]
+            else:
+                self.current_state = "NO_STATE"
         
     def is_accepted(self):
         return self.current_state in self.final_states

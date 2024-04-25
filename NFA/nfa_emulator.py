@@ -2,7 +2,7 @@
 # while modifying the state of the emulator.
 # Letters are separted by single spaces.
 
-from nfa_checker import check
+from NFA.nfa_checker import check
 import re
 
 class Emulator:

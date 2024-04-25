@@ -1,4 +1,4 @@
-import c_parser
+import utils.c_parser as c_parser
 import re
 
 # The following check function returns different codes with the following meanings:
@@ -58,9 +58,8 @@ def check(c, verbosity = 0):
                 print("The following rule contains states which are not in the states list:\n" + rule)
             return 6
         
-        # check if the letter is in the alphabet (or if it is epsilon = empty string)
         sigma = c_parser.get_section_content(c,"sigma")
-        if rule[1] not in sigma and rule[1].lower() != "epsilon":
+        if rule[1] not in sigma:
             if verbosity:
                 print("The following rule takes a letter which is not in the alphabet:\n" + rule) 
             return 7

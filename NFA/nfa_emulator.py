@@ -1,12 +1,15 @@
 # The following emulator takes in an NFA (can be created with c_parser) and consumes letters/strings
 # while modifying the state of the emulator.
-# Letters are separted by single spaces.
+# Letters are separted by single spaces inside a string.
 
 from NFA.nfa_checker import check
 import re
 
 class Emulator:
     def __init__(self, nfa):
+        """
+        Initialize the emulator with a NFA as outputed by c_parser
+        """
         if check(nfa):
             raise Exception("Invalid NFA")
         
@@ -14,7 +17,8 @@ class Emulator:
         self.alphabet = nfa["sigma"]
         self.current_states = [nfa["start"][0]]
         self.final_states = nfa["final"]
-        self.read_first_letter = False  # if the first letter has been read
+        self.read_first_letter = False  # used to determine if the emulator processed any letters
+
         self.rules = {}
         for rule in nfa["delta"]:
             rule = re.split("[ ,]+", rule)
@@ -25,11 +29,15 @@ class Emulator:
 
     
     def get_current_states(self):
+        """
+        Returns the current states of the NFA
+        """
         return self.current_states
     
     def epsilon_closure(self):
-        # returns current_states + states that can be reached by epsilon transitions
-
+        """
+        Returns current_states + states that can be reached by epsilon transitions
+        """
         closure = set(self.current_states)
         stack = list(self.current_states)
 
@@ -44,10 +52,14 @@ class Emulator:
         return list(closure)
     
     def consume_letter(self, letter):
+        """
+        Consumes a letter and modifies the state of the NFA
+        """
         if letter not in self.alphabet:
             raise Exception("Invalid letter")
         
         if self.read_first_letter == False:
+            # we need to have the epsilon closure computed before processing a letter
             self.current_states = self.epsilon_closure()
             self.read_first_letter = True
 
@@ -58,7 +70,8 @@ class Emulator:
                 new_states[self.current_states[i]] = self.rules[(self.current_states[i], letter)]
             else:
                 new_states[self.current_states[i]] = []
-           
+        
+        # update with the new states
         for i in range(len(self.current_states) - 1, -1, -1):
             if self.current_states[i] in new_states:
                 self.current_states[i:i + 1] = new_states[self.current_states[i]]
@@ -66,12 +79,21 @@ class Emulator:
         # calculate epsilon closure
         self.current_states = self.epsilon_closure()
 
+        # NOTE: here the emulator goes to a dead state by not having any state, as opposed to being in an explicit
+        #       "NO_STATE" state like in the DFA emulator
+
     def consume_string(self, str):
+        """
+        Consumes a string of letters and modifies the state of the NFA
+        """
         str = str.split()
         for letter in str:    
             self.consume_letter(letter)
 
     def is_accepted(self):
+        """
+        Returns True if any of the current states is a final state
+        """
         return any(state in self.final_states for state in self.current_states)
 
 

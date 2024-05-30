@@ -1,5 +1,5 @@
 # Parser and Emulators for CFG, DFA, NFA and PDA
-### <u>Parser (c_parser.py):</u>
+### <ins>Parser (c_parser.py):</ins>
 The parser is able to read a configuration file and return a dictionary that can be used by the emulators.      
 It accepts blank lines and comments marked by #.        
 It will raise an exception if the reserved keyword `NO_STATE` is found in the configuration file. See more about this below.          

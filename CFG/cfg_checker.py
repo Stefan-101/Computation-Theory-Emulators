@@ -48,9 +48,9 @@ def check(c, verbosity = 0):
             # check if rule output is formed of correct variables and terminals
             output = rule.split()
             for component in output:
-                if component not in c_parser.get_section_content(c,"vars") and component not in c_parser.get_section_content(c,"sigma"):
+                if component not in c_parser.get_section_content(c,"vars") and component not in c_parser.get_section_content(c,"sigma") and component != "epsilon":
                     if verbosity:
-                        print("The following rule contains a component which is not in the vars or sigma list:\n" + ' -> '.join(rule))
+                        print("The following rule contains a component which is not in the vars or sigma list:\n" + ''.join(rule))
                     return 5
 
     return 0

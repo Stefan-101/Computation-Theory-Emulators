@@ -2,7 +2,6 @@ import CFG.cfg_checker as cfg_checker
 import re
 import random
 
-# TODO process rules containing epsilon
 class Emulator:
     def __init__(self, cfg):
         """
@@ -48,7 +47,10 @@ class Emulator:
                 rule = self.rules[var]
                 rule = random.choice(rule)   # choose a random rule
 
-                self.current_string = self.current_string.replace(' ' + var + ' ', ' ' + rule + ' ', 1)
+                if rule != "epsilon":
+                    self.current_string = self.current_string.replace(' ' + var + ' ', ' ' + rule + ' ', 1)
+                else:
+                    self.current_string = self.current_string.replace(' ' + var + ' ', ' ', 1)
             else:
                 # no more variables in the string, remove leftover spaces and return
                 self.current_string = self.current_string.strip()

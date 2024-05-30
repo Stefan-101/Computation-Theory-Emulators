@@ -66,7 +66,7 @@ while i < 100:
 ### <ins>Pushdown Automata Emulator (PDA):</ins>
 See `PDA/examples/pda1.config` for a PDA input example.       
 This emulates a deterministic PDA. It can be viewed as a DFA with a stack.      
-If the PDA's stack becomes empty (pops the $ symbol) and attempts to consume a letter, it will transition to the `NO_STATE` state. It is possible to pop it and push it back in the same tranzition.      
+If the PDA's stack becomes empty (pops the $ symbol without pushing anything back) and attempts to consume a letter, it will transition to the `NO_STATE` state. It is possible to pop $ and push it back in the same tranzition. It is recommended to keep $ at the bottom of the stack though.      
 
 __Example usage:__    
 

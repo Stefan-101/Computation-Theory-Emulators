@@ -2,8 +2,12 @@ import CFG.cfg_checker as cfg_checker
 import re
 import random
 
+# TODO process rules containing epsilon
 class Emulator:
     def __init__(self, cfg):
+        """
+        Initializes the emulator with the given CFG
+        """
         if cfg_checker.check(cfg):
             raise Exception("Invalid CFG")
         
@@ -11,8 +15,8 @@ class Emulator:
         self.current_string = ' ' + re.split("\s*->\s*", cfg["rules"][0])[0] + ' '
         self.terminals = cfg["sigma"]
         self.vars = cfg["vars"]
-        self.rules = {}
 
+        self.rules = {}
         for rule in cfg["rules"]:
             rule = re.split("\s*->\s*", rule)
             if rule[0] in self.rules:
@@ -21,10 +25,16 @@ class Emulator:
                 self.rules[rule[0]] = re.split("\s*\|\s*", rule[1])
 
     def get_current_string(self):
+        """
+        Returns the string generated to the current point.
+        """
         return self.current_string
     
     # step function attempts to replace a variable and returns True if it was successful
     def step(self, steps = 1):
+        """
+        Replaces a variable in the current string with its rule (or a random rule if it has multiple rules).
+        """
         for _ in range(steps):
             # identify a variable present in the string
             var = None

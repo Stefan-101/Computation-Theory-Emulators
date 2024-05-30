@@ -9,6 +9,8 @@ def load_file(file):
         if line[0] == '#':                  # ignore line if it's a comment
             continue
         line = line.split("#")[0].strip()   # remove comments from the line
+        if "NO_STATE" in line:
+            raise Exception("NO_STATE is a reserved state name.")
         if line[-1] == ':':                 # check if the section name is changing
             loading_state = line[:-1]
             sections[loading_state.lower()] = []

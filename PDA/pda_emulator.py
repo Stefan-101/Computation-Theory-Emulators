@@ -53,6 +53,8 @@ class Emulator:
             stack_top = self.stack.pop()
         except IndexError:
             stack_top = None
+            self.current_state = "NO_STATE"
+            return
         
         rule_input = (self.current_state, input_letter, stack_top)
         if rule_input in self.rules:

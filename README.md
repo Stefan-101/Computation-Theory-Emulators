@@ -6,7 +6,7 @@ It will raise an exception if the reserved keyword `NO_STATE` is found in the co
 Configuration files need to follow the section naming conventions presented in the example files corresponding to each emulator.        
 __Special keyword:__ `epsilon` - represents the empty string (can be used for the NFA, PDA and CFG emulators)       
 ### Deterministic Finite Automata Emulator (DFA):       
-See DFA/examples/dfa1.config for a DFA input example.       
+See `DFA/examples/dfa1.config` for a DFA input example.       
 The DFA has a `NO_STATE` state symbolizing being in a "dead state" (i.e. it won't be able to reach any other state).      
 
 __Example usage:__      
@@ -22,9 +22,9 @@ print("Is accepted: " + str(em.is_accepted()))
 ```
 
 ### Nondeterministic Finite Automate Emulator (NFA):        
-See NFA/exmaples/nfa1.config for a NFA input example.       
+See `NFA/exmaples/nfa1.config` for a NFA input example.       
 Considering the nondeterministic nature, if multiple tranzitions are possible for the same input and current state, the emulator will "branch", keeping track of multiple active states and treating them independently for the letters that follow.
-This emulator doesn't have a NO_STATE, instead it ends up not having any activate state on a given branch.      
+This emulator doesn't have a `NO_STATE`, instead it ends up not having any activate state on a given branch.      
 
 __Example usage:__
 
@@ -40,7 +40,9 @@ print("Is accepted: " + str(em.is_accepted()))
 ```
 
 ### Context-Free Grammar Emulator (CFG):        
-See CFG/examples/cfg1.config for a CFG input example.
+See `CFG/examples/cfg1.config` for a CFG input example.         
+The emulator will generate strings based on the CFG rules (which are chosen randomly if multiple rules apply at any point).     
+The output of the emulator is not deterministic (i.e. it may vary between runs).
 
 __Example usage:__    
 
@@ -61,7 +63,8 @@ while i < 100:
 ```
 
 ### Pushdown Automata Emulator (PDA):
-See PDA/examples/pda1.config for a PDA input example.       
+See `PDA/examples/pda1.config` for a PDA input example.       
+This emulates a deterministic PDA. It can be viewed as a DFA with a stack.      
 
 __Example usage:__    
 

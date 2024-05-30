@@ -1,11 +1,11 @@
 # Parser and Emulators for CFG, DFA, NFA and PDA
-### Parser (c_parser.py):
+### <u>Parser (c_parser.py):</u>
 The parser is able to read a configuration file and return a dictionary that can be used by the emulators.      
 It accepts blank lines and comments marked by #.        
 It will raise an exception if the reserved keyword `NO_STATE` is found in the configuration file. See more about this below.          
 Configuration files need to follow the section naming conventions presented in the example files corresponding to each emulator.        
 __Special keyword:__ `epsilon` - represents the empty string (can be used for the NFA, PDA and CFG emulators)       
-### Deterministic Finite Automata Emulator (DFA):       
+### <u>Deterministic Finite Automata Emulator (DFA):</u>       
 See `DFA/examples/dfa1.config` for a DFA input example.       
 The DFA has a `NO_STATE` state symbolizing being in a "dead state" (i.e. it won't be able to reach any other state).      
 
@@ -21,7 +21,7 @@ print("Current state: " + em.get_current_state())
 print("Is accepted: " + str(em.is_accepted()))
 ```
 
-### Nondeterministic Finite Automate Emulator (NFA):        
+### <u>Nondeterministic Finite Automate Emulator (NFA):</u>        
 See `NFA/exmaples/nfa1.config` for a NFA input example.       
 Considering the nondeterministic nature, if multiple tranzitions are possible for the same input and current state, the emulator will "branch", keeping track of multiple active states and treating them independently for the letters that follow.
 This emulator doesn't have a `NO_STATE`, instead it ends up not having any activate state on a given branch.      
@@ -39,7 +39,7 @@ print("Current states: " + str(em.get_current_states()))
 print("Is accepted: " + str(em.is_accepted()))
 ```
 
-### Context-Free Grammar Emulator (CFG):        
+### <u>Context-Free Grammar Emulator (CFG):</u>        
 See `CFG/examples/cfg1.config` for a CFG input example.         
 The emulator will generate strings based on the CFG rules (which are chosen randomly if multiple rules apply at any point).     
 The output of the emulator is not deterministic (i.e. it may vary between runs).
@@ -62,7 +62,7 @@ while i < 100:
     i += 1
 ```
 
-### Pushdown Automata Emulator (PDA):
+### <u>Pushdown Automata Emulator (PDA):</u>
 See `PDA/examples/pda1.config` for a PDA input example.       
 This emulates a deterministic PDA. It can be viewed as a DFA with a stack.      
 

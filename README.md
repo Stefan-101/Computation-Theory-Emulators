@@ -14,7 +14,7 @@ __Example usage:__
 from DFA.dfa_emulator import Emulator
 import utils.c_parser as c_parser
 
-em = Emulator(c_parser.load_file("DFA_Examples/dfa1.config"))
+em = Emulator(c_parser.load_file("DFA_Examples/dfa1.config"))  # see dfa1.config for the DFA definition
 em.consume_letter("0")
 em.consume_string("0 1 1")
 print("Current state: " + em.get_current_state())
@@ -32,7 +32,7 @@ __Example usage:__
 from NFA.nfa_emulator import Emulator
 import utils.c_parser as c_parser
 
-em = Emulator(c_parser.load_file("NFA_Examples/nfa1.config"))
+em = Emulator(c_parser.load_file("NFA_Examples/nfa1.config"))  # see nfa1.config for the NFA definition
 em.consume_letter("0")
 em.consume_string("0 1 1")
 print("Current states: " + str(em.get_current_states()))
@@ -45,12 +45,13 @@ The emulator will generate strings based on the CFG rules (which are chosen rand
 The output of the emulator is not deterministic (i.e. it may vary between runs).
 
 __Example usage:__    
+Generate 100 strings from the CFG:      
 
 ```
 import utils.c_parser as c_parser
 from CFG.cfg_emulator import Emulator
 
-path = "CFG/examples/cfg2.config"
+path = "CFG/examples/cfg2.config"       # see cfg2.config for the CFG definition
 em = Emulator(c_parser.load_file(path))
 i = 0
 while i < 100:
@@ -73,7 +74,7 @@ from PDA.pda_emulator import Emulator
 import utils.c_parser as c_parser
 
 
-em = Emulator(c_parser.load_file("PDA/examples/pda1.config"))
+em = Emulator(c_parser.load_file("PDA/examples/pda1.config"))  # see pda1.config for the PDA definition
 em.consume_string("0 0 0 1 1 1 @")
 print("Current state: ", em.get_current_state())
 print("Is accepted: " + str(em.is_accepted()))

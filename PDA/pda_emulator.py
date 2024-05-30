@@ -70,7 +70,6 @@ class Emulator:
                 rule_output: Rule_output = self.rules[rule]
                 self.current_state = rule_output.state
                 if rule_output.stack_letter != "epsilon":
-                    print(rule_output.stack_letter)
                     self.stack.append(rule_output.stack_letter)
                 return
 
